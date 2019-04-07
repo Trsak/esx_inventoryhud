@@ -1,63 +1,121 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta name="author" content="Trsak; trsak1@seznam.cz; GameSites.cz">
-    <title>ESX Inventory HUD</title>
-    <link rel="stylesheet" id="themonic-fonts-css"  href="css/contextMenu.min.css" type="text/css" media="all" />
-    <link rel="stylesheet" id="themonic-fonts-css"  href="css/ui.css" type="text/css" media="all" />
+  <meta name="author" content="Trsak; trsak1@seznam.cz; GameSites.cz">
+  <title>ESX Inventory HUD</title>
+  <link rel="stylesheet" id="themonic-fonts-css" href="css/contextMenu.min.css" type="text/css" media="all" />
+  <link rel="stylesheet" id="themonic-fonts-css" href="css/ui.css" type="text/css" media="all" />
 </head>
+
 <body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/contextMenu.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/contextMenu.min.js"></script>
 
-<div id="inventoryHud">
+  <div id="inventoryHud">
     <div id="inventoryElement">
-        <div class="item" style="">
-            <div class="count">1 / 5</div>
-        </div>
-
-        <div class="item">Item</div>
-        <div class="item">Item</div>
-        <div class="item">Item</div>
-        <div class="item">Item</div>
-        <div class="item">Item</div>
-        <div class="item">Item</div>
-        <div class="item">Item</div>
-        <div class="item">Item</div>
-        <div class="item">Item</div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
+      <div class="item">
+        <div class="count">1 / 5</div>
+        <div class="text">Hamburger</div>
+      </div>
     </div>
-</div>
+  </div>
 
 
-<script type="text/javascript">
-var data = [
-    [{
-      text: "Cut （ctrl+x）",
-      action: function () {
-        console.log("Cut");
-      }
-    },
-    {
-      text: "Copy（ctrl+c）"
-    },
-    {
-      text: "Paste（ctrl+v）",
-      action: function () {
-        console.log("Paste");
-      }
-    }],
-    [{
-      text: "Bold （ctrl+b）"
-    },
-    {
-      text: "Underline（ctrl+u）"
-    }]
-];
+  <script type="text/javascript">
+    var data = [
+      [{
+        text: "Cut （ctrl+x）",
+        action: function () {
+          console.log("Cut");
+        }
+      },
+      {
+        text: "Copy（ctrl+c）"
+      },
+      {
+        text: "Paste（ctrl+v）",
+        action: function () {
+          console.log("Paste");
+        }
+      }],
+      [{
+        text: "Bold （ctrl+b）"
+      },
+      {
+        text: "Underline（ctrl+u）"
+      }]
+    ];
 
-$(".item").contextMenu(data,{
-    offsetX: 0,
-    offsetY: 0,
-});
-</script>
+    $(".item").contextMenu(data, {
+      offsetX: 0,
+      offsetY: 0,
+    });
+  </script>
 </body>
+
 </html>
