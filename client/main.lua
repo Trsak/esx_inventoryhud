@@ -54,6 +54,8 @@ RegisterNUICallback('DropItem', function(data, cb)
     end
 
     if data.type == 'item_weapon' then
+        print(data.type)
+        print(data.item)
         TriggerServerEvent('esx:removeInventoryItem', data.type, data.item)
         Wait(500)
         loadPlayerInventory()
@@ -70,7 +72,23 @@ function loadPlayerInventory()
     PlayerData = ESX.GetPlayerData()
     local playerPed = PlayerPedId()
     local inventory = PlayerData["inventory"]
+    local money = PlayerData["money"]
     local items  = {}
+
+    if money > 0 then
+		local formattedMoney = ESX.Math.GroupDigits(money)
+
+		table.insert(items, {
+			label     = "Hotovost",
+			count     = formattedMoney,
+			type      = 'item_money',
+			name     = 'cash',
+			usable    = false,
+            rare      = false,
+            limit = -1,
+			canRemove = true
+		})
+	end
     
     for i=1, #inventory, 1 do
 		if inventory[i].count > 0 then

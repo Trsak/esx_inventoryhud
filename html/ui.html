@@ -37,6 +37,7 @@
         else if (event.data.action == "hide") {
           $("#inventoryHud").fadeOut();
           $(".site-cm-box").remove();
+          dialog.close();
         }
         else if (event.data.action == "setItems") {
           inventorySetup(event.data.itemList);
@@ -45,29 +46,28 @@
     });
 
     function dropGetHowMany(item, type) {
-      if (type == "item_standard") {
+      if (type != "item_weapon") {
         dialog.prompt({
-          title: "Prompt Title",
-          message: "Prompt Message",
-          button: "Submit",
-          required: true,
+          title: "Zadejte počet",
+          button: "Odeslat",
+          required: false,
+          item: item,
+          type: type,
           input: {
-            type: "number",
-            placeholder: "This is a placeholder..."
+            type: "number"
           },
-          validate: function (value) {
-            $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item.name, type: item.type, number: parseInt(value) }));
+          validate: function (value, item, type) {
+            $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item, type: type, number: parseInt(value) }));
             return true;
           }
         });
       }
       else {
-        $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item.name, type: item.type, number: 0 }));
+        $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item, type: type, number: 0 }));
       }
     }
 
     function inventorySetup(items) {
-      console.log(JSON.stringify(items));
       $("#inventoryElement").html("");
       $.each(items, function (index, item) {
         count = item.count;
@@ -77,7 +77,7 @@
         }
 
         $("#inventoryElement").append("<div style='background-image: url(\"img/items/" + item.name + ".png\");' id='item-" + index + "' class='item'><div class='count'>" + count + "</div><div class='text'>" + item.label + "</div></div>")
-
+        
         var data = [];
 
         if (item.usable) {
@@ -97,8 +97,6 @@
             }
           });
         }
-
-        console.log(JSON.stringify(data));
 
         if (data.length > 0) {
           $("#item-" + index).contextMenu([data], {

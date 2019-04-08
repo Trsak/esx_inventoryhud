@@ -20,5 +20,7 @@ files {
     'html/img/items/coffee.png',
     'html/img/items/coke.png',
     'html/img/items/hamburger.png',
+    'html/img/items/cash.png',
+    'html/img/items/WEAPON_PISTOL.png',
     'html/img/items/limonade.png'
 }
