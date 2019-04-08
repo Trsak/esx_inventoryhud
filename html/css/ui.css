@@ -12,7 +12,7 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    background: rgba(30, 144, 255, 0.1); 
+    background: rgba(19, 29, 39, 0.5); 
 }
 
 #inventoryElement {
@@ -33,17 +33,20 @@ body {
 {
     border-radius: 10px;
     background-color: rgba(105, 105, 105, 0.4); 
+    border-radius: 5px;
 }
 
 #inventoryElement::-webkit-scrollbar
 {
     width: 12px;
     background-color: rgba(105, 105, 105, 0.4); 
+    border-radius: 5px;
 }
 
 #inventoryElement::-webkit-scrollbar-thumb
 {
     background-color: rgba(83, 82, 82);
+    border-radius: 5px;
 }
 
 .item {
@@ -59,7 +62,6 @@ body {
     border-style: solid;
     background-position: center center; 
     background-repeat: no-repeat;
-    background-image: url('../img/items/burger.png');
     background-color: rgba(105, 105, 105, 0.5); 
 }
 

@@ -14,107 +14,64 @@
 
   <div id="inventoryHud">
     <div id="inventoryElement">
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
-      <div class="item">
-        <div class="count">1 / 5</div>
-        <div class="text">Hamburger</div>
-      </div>
     </div>
   </div>
 
 
   <script type="text/javascript">
-    var data = [
-      [{
-        text: "Cut （ctrl+x）",
-        action: function () {
-          console.log("Cut");
-        }
-      },
-      {
-        text: "Copy（ctrl+c）"
-      },
-      {
-        text: "Paste（ctrl+v）",
-        action: function () {
-          console.log("Paste");
-        }
-      }],
-      [{
-        text: "Bold （ctrl+b）"
-      },
-      {
-        text: "Underline（ctrl+u）"
-      }]
-    ];
+    $("document").ready(function () {
+      $("#inventoryHud").hide();
 
-    $(".item").contextMenu(data, {
-      offsetX: 0,
-      offsetY: 0,
+      $("body").on("keyup", function (key) {
+        if (key.which == 113) {
+          $.post("http://esx_inventoryhud/NUIFocusOff", JSON.stringify({}));
+        }
+      });
+
+      window.addEventListener("message", function (event) {
+        if (event.data.action == "display") {
+          $("#inventoryHud").fadeIn();
+        }
+        else if (event.data.action == "hide") {
+          $("#inventoryHud").fadeOut();
+        }
+        else if (event.data.action == "setItems") {
+          inventorySetup(event.data.itemList);
+        }
+      });
     });
+
+    function inventorySetup(items) {
+      $("#inventoryElement").html("");
+      $.each(items, function (index, item) {
+        count = item.count;
+
+        if (item.limit > 0) {
+          count = count + " / " + item.limit;
+        }
+
+        $("#inventoryElement").append("<div style='background-image: url(\"img/items/burger.png\");' id='item-" + index + "' class='item'><div class='count'>" + count + "</div><div class='text'>" + item.label + "</div></div>")
+
+        var data = [];
+
+        if(item.usable) {
+          data.push({text: "Použít"});
+        }
+
+        if (item.canRemove) {
+          data.push({text: "Zahodit"});
+        }
+
+        console.log(JSON.stringify(data));
+
+        if (data.length > 0) {
+          $("#item-" + index).contextMenu([data], {
+            offsetX: 1,
+            offsetY: 1,
+          });
+        }
+      });
+    }
   </script>
 </body>
 
