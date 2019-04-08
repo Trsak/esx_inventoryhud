@@ -17,6 +17,21 @@ git clone https://github.com/Trsak/esx_inventoryhud [esx]/esx_inventoryhud
 - Put it in the `[esx]` directory
 
 ## Installation
+- Open `es_extended`, then find and remove this code in `client/main.lua`:
+```
+-- Menu interactions
+Citizen.CreateThread(function()
+	while true do
+
+		Citizen.Wait(0)
+
+		if IsControlJustReleased(0, Keys['F2']) and IsInputDisabled(0) and not isDead and not ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
+			ESX.ShowInventory()
+		end
+
+	end
+end)
+```
 - Add this to your `server.cfg`:
 
 ```
