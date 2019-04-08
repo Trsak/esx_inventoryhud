@@ -11,6 +11,7 @@
 
 <body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
   <script type="text/javascript" src="js/contextMenu.min.js"></script>
   <script type="text/javascript" src="js/jquery.dialog.min.js"></script>
 
@@ -21,11 +22,15 @@
 
 
   <script type="text/javascript">
+    var imported = document.createElement("script");
+    imported.src = "locales/" + Config.locale + ".js";
+    document.head.appendChild(imported);
+
     $("document").ready(function () {
       $("#inventoryHud").hide();
 
       $("body").on("keyup", function (key) {
-        if (key.which == 113) {
+        if (key.which == Config.closeKey) {
           $.post("http://esx_inventoryhud/NUIFocusOff", JSON.stringify({}));
         }
       });
@@ -48,8 +53,8 @@
     function dropGetHowMany(item, type) {
       if (type != "item_weapon") {
         dialog.prompt({
-          title: "Zadejte počet",
-          button: "Odeslat",
+          title: locale.getNumber,
+          button: locale.confirmNumber,
           required: false,
           item: item,
           type: type,
@@ -68,6 +73,7 @@
     }
 
     function inventorySetup(items) {
+      console.log(JSON.stringify(locale));
       $("#inventoryElement").html("");
       $.each(items, function (index, item) {
         count = item.count;
@@ -77,12 +83,12 @@
         }
 
         $("#inventoryElement").append("<div style='background-image: url(\"img/items/" + item.name + ".png\");' id='item-" + index + "' class='item'><div class='count'>" + count + "</div><div class='text'>" + item.label + "</div></div>")
-        
+
         var data = [];
 
         if (item.usable) {
           data.push({
-            text: "<span class=\"emoji\">🖐️</span> Použít",
+            text: locale.useItem,
             action: function () {
               $.post("http://esx_inventoryhud/UseItem", JSON.stringify({ item: item.name }));
             }
@@ -91,7 +97,7 @@
 
         if (item.canRemove) {
           data.push({
-            text: "<span class=\"emoji\">🗑️</span> Zahodit",
+            text: locale.dropItem,
             action: function () {
               dropGetHowMany(item.name, item.type);
             }
