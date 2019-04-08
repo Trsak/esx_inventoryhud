@@ -41,7 +41,7 @@ RegisterNUICallback('GetNearPlayers', function(data, cb)
 
             table.insert(elements, {
                 label = GetPlayerName(players[i]),
-                player = players[i]
+                player = GetPlayerServerId(players[i])
             })
         end
     end
@@ -89,18 +89,19 @@ RegisterNUICallback('DropItem', function(data, cb)
 end)
 
 RegisterNUICallback('GiveItem', function(data, cb)
+    local playerPed = PlayerPedId()
     local players, nearbyPlayer = ESX.Game.GetPlayersInArea(GetEntityCoords(playerPed), 3.0)
     local foundPlayer = false
     for i=1, #players, 1 do
         if players[i] ~= PlayerId() then
-            if players[i] == data.player then
+            if GetPlayerServerId(players[i]) == data.player then
                 foundPlayer = true
             end
         end
     end
     
     if foundPlayer then
-        TriggerServerEvent('esx:giveInventoryItem', data.player, data.data.type, data.data.item, data.data.count)
+        TriggerServerEvent('esx:giveInventoryItem', data.player, data.data.type, data.data.item, tonumber(data.data.count))
         Wait(500)
         loadPlayerInventory()
     else
