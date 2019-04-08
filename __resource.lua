@@ -18,7 +18,7 @@ files {
     'html/ui.html',
     'html/css/contextMenu.min.css',
     'html/css/jquery.dialog.min.css',
-    'html/css/ui.css',
+    'html/css/ui.min.css',
     'html/js/config.js',
     'html/js/contextMenu.min.js',
     'html/js/jquery.dialog.min.js',

@@ -40,6 +40,8 @@ body {
     background-color: rgba(105, 105, 105, 0.3); 
     border-radius: 5px;
     overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
 }​
 
 #inventoryElement::-webkit-scrollbar-track
@@ -60,6 +62,79 @@ body {
 {
     background-color: rgba(83, 82, 82);
     border-radius: 5px;
+}
+
+.controls {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 900px;
+    height: 680px;
+}
+
+.controls #search {
+    float: left;
+    width: 40%;
+    height: 30px;
+}
+
+.controls #close {
+    float: right;
+    width: 15%;
+}
+
+button#close { 
+    float: left;
+}
+
+button { 
+    background: rgba(105, 105, 105, 0.8); 
+    border: none;
+    float: left;
+    height: 30px;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+button:hover { 
+    background: rgb(70, 70, 70); 
+}
+
+input#search { 
+    background: rgba(105, 105, 105, 0.8); 
+    border: none;
+    float: left;
+    height: 30px;
+    color: white;
+    padding-left: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input#search::-webkit-input-placeholder {
+    color: #898f94;
+ }
+  
+input#search:-moz-placeholder { /* Firefox 18- */
+    color: #898f94;  
+ }
+  
+input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: #898f94;  
+ }
+  
+input#search:-ms-input-placeholder {  
+    color: #898f94;  
+ }
+
+ *:focus {
+    outline: none;
 }
 
 .item {

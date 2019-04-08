@@ -29,6 +29,40 @@ RegisterNUICallback('NUIFocusOff', function()
 	SetNuiFocus(false, false)
 end)
 
+RegisterNUICallback('GetNearPlayers', function(data, cb)
+    local playerPed = PlayerPedId()
+    local players, nearbyPlayer = ESX.Game.GetPlayersInArea(GetEntityCoords(playerPed), 3.0)
+    local foundPlayers = false
+    local elements     = {}
+
+    for i=1, #players, 1 do
+        if players[i] ~= PlayerId() then
+            foundPlayers = true
+
+            table.insert(elements, {
+                label = GetPlayerName(players[i]),
+                player = players[i]
+            })
+        end
+    end
+    
+    if not foundPlayers then
+        ESX.ShowNotification(_U('players_nearby'))
+    else
+        SendNUIMessage({
+            action = "nearPlayers",
+            foundAny = foundPlayers,
+            players = elements,
+            item = data.item,
+            count = data.count,
+            type = data.type,
+            what = data.what
+        })
+    end
+    
+	cb("ok")
+end)
+
 RegisterNUICallback('UseItem', function(data, cb)
     TriggerServerEvent('esx:useItem', data.item)
     Citizen.Wait(500)
@@ -42,8 +76,6 @@ RegisterNUICallback('DropItem', function(data, cb)
     end
 
     if data.type == 'item_weapon' then
-        print(data.type)
-        print(data.item)
         TriggerServerEvent('esx:removeInventoryItem', data.type, data.item)
         Wait(500)
         loadPlayerInventory()
@@ -53,6 +85,27 @@ RegisterNUICallback('DropItem', function(data, cb)
         loadPlayerInventory()
     end
 
+	cb("ok")
+end)
+
+RegisterNUICallback('GiveItem', function(data, cb)
+    local players, nearbyPlayer = ESX.Game.GetPlayersInArea(GetEntityCoords(playerPed), 3.0)
+    local foundPlayer = false
+    for i=1, #players, 1 do
+        if players[i] ~= PlayerId() then
+            if players[i] == data.player then
+                foundPlayer = true
+            end
+        end
+    end
+    
+    if foundPlayer then
+        TriggerServerEvent('esx:giveInventoryItem', data.player, data.data.type, data.data.item, data.data.count)
+        Wait(500)
+        loadPlayerInventory()
+    else
+        ESX.ShowNotification(_U('player_nearby'))
+    end
 	cb("ok")
 end)
 
