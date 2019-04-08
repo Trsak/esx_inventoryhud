@@ -12,14 +12,14 @@
 }
 
 .site-cm-box ul.site-cm-group li {
-    height: 36px;
     padding-left: 10px;
     padding-right: 10px;
     margin: 2px;
-    line-height: 36px;
+    line-height: 25px;
     text-overflow:ellipsis;
     white-space:nowrap;
     overflow: hidden;
+    color: black;
     cursor: default;
 }
 
@@ -36,7 +36,7 @@
 
 .site-cm-box ul.site-cm-group li > .site-cm-box {
     left: 185px;
-    margin-top: -36px;
+    margin-top: -20px;
 }
 
 .site-cm-box ul.site-cm-group li:hover > .site-cm-box,

@@ -68,7 +68,7 @@ function loadPlayerInventory()
             local formattedMoney = ESX.Math.GroupDigits(money)
 
             table.insert(items, {
-                label     = "Hotovost",
+                label     = _U('cash'),
                 count     = formattedMoney,
                 type      = 'item_money',
                 name     = 'cash',

@@ -1,0 +1,3 @@
+Locales['cs'] = {
+	['cash'] = 'Hotovost'
+}

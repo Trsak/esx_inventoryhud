@@ -1,8 +1,21 @@
+@font-face {
+    font-family: osifont;
+    src: url('../fonts/osifont.ttf') format('truetype');  
+}
+
 body {
     width: 100%;
     height: 100%;
     overflow: hidden;
     margin: 0;
+	font-size: 15px;
+	color: white;
+    font-family: osifont, comic-sans;
+    -moz-font-feature-settings: "liga", "dlig";
+    -ms-font-feature-settings: "liga", "dlig";
+    -o-font-feature-settings: "liga", "dlig";
+    -webkit-font-feature-settings: "liga", "dlig";
+    font-feature-settings: "liga", "dlig";
 }
 
 #inventoryHud {
@@ -55,7 +68,7 @@ body {
     margin: 5px;
     width: 160px;
     height: 160px;
-    border-color: rgba(105, 105, 105, 0.5);
+    border-color: rgba(105, 105, 105, 0.9); 
     border-radius: 5px;
     text-align: right;
     border-width: 3px;
@@ -66,18 +79,18 @@ body {
 }
 
 .item:hover, .item.active {
-    border-color: black;
+    border-color: rgba(105, 105, 105, 0.9); 
     background-color: rgba(105, 105, 105, 0.8); 
 }
 
 .item .count {
     margin: 4px;
     font-weight: bold;
+    height: 80%;
 }
 
 .item .text {
     font-weight: bold;
-    position: absolute;
     bottom: 1px;
     width: 100%;
     background-color: rgba(105, 105, 105, 0.9); 
@@ -92,6 +105,5 @@ img.emojione {
   
 span.emoji {
     font-size: 15px;
-    vertical-align: middle;
     line-height: 2;
 }
