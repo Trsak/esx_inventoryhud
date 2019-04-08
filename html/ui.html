@@ -5,12 +5,14 @@
   <meta name="author" content="Trsak; trsak1@seznam.cz; GameSites.cz">
   <title>ESX Inventory HUD</title>
   <link rel="stylesheet" id="themonic-fonts-css" href="css/contextMenu.min.css" type="text/css" media="all" />
+  <link rel="stylesheet" id="themonic-fonts-css" href="css/jquery.dialog.min.css" type="text/css" media="all" />
   <link rel="stylesheet" id="themonic-fonts-css" href="css/ui.css" type="text/css" media="all" />
 </head>
 
 <body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="js/contextMenu.min.js"></script>
+  <script type="text/javascript" src="js/jquery.dialog.min.js"></script>
 
   <div id="inventoryHud">
     <div id="inventoryElement">
@@ -34,6 +36,7 @@
         }
         else if (event.data.action == "hide") {
           $("#inventoryHud").fadeOut();
+          $(".site-cm-box").remove();
         }
         else if (event.data.action == "setItems") {
           inventorySetup(event.data.itemList);
@@ -41,7 +44,30 @@
       });
     });
 
+    function dropGetHowMany(item, type) {
+      if (type == "item_standard") {
+        dialog.prompt({
+          title: "Prompt Title",
+          message: "Prompt Message",
+          button: "Submit",
+          required: true,
+          input: {
+            type: "number",
+            placeholder: "This is a placeholder..."
+          },
+          validate: function (value) {
+            $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item.name, type: item.type, number: parseInt(value) }));
+            return true;
+          }
+        });
+      }
+      else {
+        $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item.name, type: item.type, number: 0 }));
+      }
+    }
+
     function inventorySetup(items) {
+      console.log(JSON.stringify(items));
       $("#inventoryElement").html("");
       $.each(items, function (index, item) {
         count = item.count;
@@ -50,16 +76,26 @@
           count = count + " / " + item.limit;
         }
 
-        $("#inventoryElement").append("<div style='background-image: url(\"img/items/burger.png\");' id='item-" + index + "' class='item'><div class='count'>" + count + "</div><div class='text'>" + item.label + "</div></div>")
+        $("#inventoryElement").append("<div style='background-image: url(\"img/items/" + item.name + ".png\");' id='item-" + index + "' class='item'><div class='count'>" + count + "</div><div class='text'>" + item.label + "</div></div>")
 
         var data = [];
 
-        if(item.usable) {
-          data.push({text: "Použít"});
+        if (item.usable) {
+          data.push({
+            text: "<span class=\"emoji\">🖐️</span> Použít",
+            action: function () {
+              $.post("http://esx_inventoryhud/UseItem", JSON.stringify({ item: item.name }));
+            }
+          });
         }
 
         if (item.canRemove) {
-          data.push({text: "Zahodit"});
+          data.push({
+            text: "<span class=\"emoji\">🗑️</span> Zahodit",
+            action: function () {
+              dropGetHowMany(item.name, item.type);
+            }
+          });
         }
 
         console.log(JSON.stringify(data));

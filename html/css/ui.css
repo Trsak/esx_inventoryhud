@@ -52,13 +52,13 @@ body {
 .item {
     position: relative;
     float: left;
-    margin: 6px;
+    margin: 5px;
     width: 160px;
     height: 160px;
-    border-color: wheat;
+    border-color: rgba(105, 105, 105, 0.5);
     border-radius: 5px;
     text-align: right;
-    border-width: 2px;
+    border-width: 3px;
     border-style: solid;
     background-position: center center; 
     background-repeat: no-repeat;
@@ -67,6 +67,7 @@ body {
 
 .item:hover, .item.active {
     border-color: black;
+    background-color: rgba(105, 105, 105, 0.8); 
 }
 
 .item .count {
@@ -79,6 +80,18 @@ body {
     position: absolute;
     bottom: 1px;
     width: 100%;
-    background-color: rgba(105, 105, 105, 0.6); 
-    text-align: center
+    background-color: rgba(105, 105, 105, 0.9); 
+    text-align: center;
+}
+
+img.emojione {
+    margin: 0px !important;
+    display: inline !important;
+}
+  
+  
+span.emoji {
+    font-size: 15px;
+    vertical-align: middle;
+    line-height: 2;
 }
