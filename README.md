@@ -41,3 +41,7 @@ end)
 ```
 start esx_inventoryhud
 ```
+
+## Config files
+* config.lua
+* html/js/config.js
