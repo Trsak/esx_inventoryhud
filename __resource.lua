@@ -27,6 +27,7 @@ files {
     'html/locales/en.js',
     'html/locales/fr.js',
     'html/fonts/osifont.ttf',
+    -- ICONS
     'html/img/items/beer.png',
     'html/img/items/binoculars.png',
     'html/img/items/bread.png',
