@@ -24,8 +24,6 @@ files {
     'html/js/jquery.dialog.min.js',
     'html/locales/cs.js',
     'html/locales/en.js',
-    'locales/cs.lua',
-    'locales/en.lua',
     'html/fonts/osifont.ttf',
     'html/img/items/beer.png',
     'html/img/items/binoculars.png',
