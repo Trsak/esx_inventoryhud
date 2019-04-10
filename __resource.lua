@@ -11,6 +11,7 @@ client_scripts {
   'client/main.lua',
   'locales/cs.lua',
   'locales/en.lua',
+  'locales/fr.lua',
   'config.lua'	
 }
 
@@ -24,6 +25,7 @@ files {
     'html/js/jquery.dialog.min.js',
     'html/locales/cs.js',
     'html/locales/en.js',
+    'html/locales/fr.js',
     'html/fonts/osifont.ttf',
     'html/img/items/beer.png',
     'html/img/items/binoculars.png',
