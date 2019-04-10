@@ -110,11 +110,22 @@ RegisterNUICallback('GiveItem', function(data, cb)
 	cb("ok")
 end)
 
+function shouldSkipAccount (accountName)
+    for index, value in ipairs(Config.ExcludeAccountsList) do
+        if value == accountName then
+            return true
+        end
+    end
+
+    return false
+end
+
 function loadPlayerInventory()
     PlayerData = ESX.GetPlayerData()
     local playerPed = PlayerPedId()
     local inventory = PlayerData["inventory"]
     local money = PlayerData["money"]
+    local accounts = PlayerData["accounts"]
     local items  = {}
 
     if Config.IncludeCash then
@@ -131,6 +142,27 @@ function loadPlayerInventory()
                 limit = -1,
                 canRemove = true
             })
+        end
+    end
+
+    if Config.IncludeAccounts then
+        for i=1, #accounts, 1 do
+            if not shouldSkipAccount(accounts[i].name) then
+                if accounts[i].money > 0 then
+                    local canDrop = accounts[i].name ~= 'bank'
+
+                    table.insert(items, {
+                        label     = accounts[i].label,
+                        count     = accounts[i].money,
+                        type      = 'item_account',
+                        name     = accounts[i].name,
+                        usable    = false,
+                        rare      = false,
+                        limit = -1,
+                        canRemove = canDrop
+                    })
+                end
+            end
         end
     end
     
