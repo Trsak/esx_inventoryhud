@@ -4,9 +4,18 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 ## Requirements
 * [es_extended](https://github.com/ESX-Org/es_extended)
 
+## Features
+- Using items
+- Droping items
+- Giving items
+- Searching inventory
+- Cash included
+- Accounts support (bank, black money, ...)
+- Fully configurable (check config.lua and html/js/config.js)
+- Locale files included (check locales/ and html/locales/ directories)
+
 ## Screens
-* [https://i.imgur.com/12qs9BG.png](https://i.imgur.com/12qs9BG.png)
-* [https://i.imgur.com/Fc3KiHT.png](https://i.imgur.com/Fc3KiHT.png)
+* [https://i.imgur.com/PRx3vX3.png](https://i.imgur.com/PRx3vX3.png)
 
 ## Download & Installation
 
