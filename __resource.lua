@@ -15,6 +15,15 @@ client_scripts {
   'config.lua'	
 }
 
+server_scripts {
+  '@es_extended/locale.lua',
+  'server/main.lua',
+  'locales/cs.lua',
+  'locales/en.lua',
+  'locales/fr.lua',
+  'config.lua'	
+}
+
 files {
     'html/ui.html',
     'html/css/contextMenu.min.css',
