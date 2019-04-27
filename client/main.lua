@@ -144,7 +144,7 @@ RegisterNUICallback(
         local elements = {}
 
         for i = 1, #players, 1 do
-            --if players[i] ~= PlayerId() then
+            if players[i] ~= PlayerId() then
                 foundPlayers = true
 
                 table.insert(
@@ -154,7 +154,7 @@ RegisterNUICallback(
                         player = GetPlayerServerId(players[i])
                     }
                 )
-            --end
+            end
         end
 
         if not foundPlayers then
@@ -218,11 +218,11 @@ RegisterNUICallback(
         local players, nearbyPlayer = ESX.Game.GetPlayersInArea(GetEntityCoords(playerPed), 3.0)
         local foundPlayer = false
         for i = 1, #players, 1 do
-            --if players[i] ~= PlayerId() then
+            if players[i] ~= PlayerId() then
                 if GetPlayerServerId(players[i]) == data.player then
                     foundPlayer = true
                 end
-            --end
+            end
         end
 
         if foundPlayer then

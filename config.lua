@@ -1,5 +1,5 @@
 Config = {}
-Config.Locale = "en"
+Config.Locale = "cs"
 Config.IncludeCash = true -- Include cash in inventory?
 Config.IncludeWeapons = true -- Include weapons in inventory?
 Config.IncludeAccounts = true -- Include accounts (bank, black money, ...)?
