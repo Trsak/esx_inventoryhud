@@ -20,17 +20,6 @@
                 clickOutside: true
             });
         });
-
-        document.getElementById("localeScript").remove();
-        var imported = document.createElement("script");
-        imported.src = "locales/" + Config.locale + ".js";
-        imported.id = "localeScript";
-        document.head.appendChild(imported);
-
-        $("#use").html(locale.useItem);
-        $("#give").html(locale.giveItem);
-        $("#drop").html(locale.dropItem);
-        $("#noSecondInventoryMessage").html(locale.secondInventoryNotAvailable);
     </script>
 
     <div class="ui">
@@ -58,5 +47,18 @@
     </div>
 
 </body>
+
+<script>
+    var imported = document.createElement("script");
+    imported.src = "locales/" + Config.locale + ".js";
+    document.head.appendChild(imported);
+
+    $(document).ready(function () {
+        $("#use").html(invLocale.useItem);
+        $("#give").html(invLocale.giveItem);
+        $("#drop").html(invLocale.dropItem);
+        $("#noSecondInventoryMessage").html(invLocale.secondInventoryNotAvailable);
+    });
+</script>
 
 </html>

@@ -1,5 +1,5 @@
-var locale = new Object();
-locale.dropItem = "Zahodit";
-locale.useItem = "Použít";
-locale.giveItem = "Dát";
-locale.secondInventoryNotAvailable = "Druhý inventář není dostupný";
+var invLocale = new Object();
+invLocale.dropItem = "Zahodit";
+invLocale.useItem = "Použít";
+invLocale.giveItem = "Dát";
+invLocale.secondInventoryNotAvailable = "Druhý inventář není dostupný";
