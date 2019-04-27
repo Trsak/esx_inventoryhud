@@ -8,7 +8,7 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 ## Features
 - Drag and drop
 - Using items
-- Droping items
+- Dropping items
 - Giving items
 - Cash included
 - Accounts support (bank, black money, ...)
@@ -17,7 +17,7 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 - Locale files included (check locales/ and html/locales/ directories)
 
 ## Screens
-* [https://i.imgur.com/PRx3vX3.png](https://i.imgur.com/PRx3vX3.png)
+* [https://i.imgur.com/eHD01Tl.png](https://i.imgur.com/eHD01Tl.png)
 
 ## Download & Installation
 

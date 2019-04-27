@@ -4,6 +4,7 @@ window.addEventListener("message", function (event) {
     } else if (event.data.action == "hide") {
         $("#dialog").dialog("close");
         $(".ui").fadeOut();
+        $(".item").remove();
     } else if (event.data.action == "setItems") {
         inventorySetup(event.data.itemList);
 
@@ -47,7 +48,7 @@ window.addEventListener("message", function (event) {
         $(".nearbyPlayerButton").click(function () {
             $("#dialog").dialog("close");
             player = $(this).data("player");
-            $.post("http://esx_inventoryhud/GiveItem", JSON.stringify({ player: player, data: event.data.item }));
+            $.post("http://esx_inventoryhud/GiveItem", JSON.stringify({ player: player, item: event.data.item, number: parseInt($("#count").val()) }));
         });
     }
 });
