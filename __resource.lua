@@ -11,7 +11,6 @@ client_scripts {
   'client/main.lua',
   'locales/cs.lua',
   'locales/en.lua',
-  'locales/fr.lua',
   'config.lua'	
 }
 
@@ -20,22 +19,18 @@ server_scripts {
   'server/main.lua',
   'locales/cs.lua',
   'locales/en.lua',
-  'locales/fr.lua',
   'config.lua'	
 }
 
 files {
     'html/ui.html',
-    'html/css/contextMenu.min.css',
-    'html/css/jquery.dialog.min.css',
-    'html/css/ui.min.css',
+    'html/css/ui.css',
+    'html/css/jquery-ui.css',
+    'html/js/inventory.js',
     'html/js/config.js',
-    'html/js/contextMenu.min.js',
-    'html/js/jquery.dialog.min.js',
+    -- JS LOCALES
     'html/locales/cs.js',
     'html/locales/en.js',
-    'html/locales/fr.js',
-    'html/fonts/osifont.ttf',
     -- ICONS
     'html/img/items/beer.png',
     'html/img/items/binoculars.png',
@@ -46,8 +41,15 @@ files {
     'html/img/items/cocacola.png',
     'html/img/items/coffee.png',
     'html/img/items/coke.png',
+    'html/img/items/meth.png',
+    'html/img/items/opium.png',
+    'html/img/items/weed.png',
     'html/img/items/gold.png',
+    'html/img/items/icetea.png',
+    'html/img/items/sandwich.png',
+    'html/img/items/papers.png',
     'html/img/items/hamburger.png',
+    'html/img/items/wine.png',
     'html/img/items/cash.png',
     'html/img/items/chocolate.png',
     'html/img/items/iron.png',
@@ -68,6 +70,7 @@ files {
     'html/img/items/bolcacahuetes.png',
     'html/img/items/fixkit.png',
     'html/img/items/bolchips.png',
+    'html/img/items/black_chip.png',
     'html/img/items/black_money.png',
     'html/img/items/WEAPON_APPISTOL.png',
     'html/img/items/WEAPON_ASSAULTRIFLE.png',
