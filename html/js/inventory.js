@@ -6,7 +6,7 @@ window.addEventListener("message", function (event) {
 
         if (type === "normal") {
             $(".info-div").hide();
-        } else if (type === "normal") {
+        } else if (type === "trunk") {
             $(".info-div").show();
         }
 
