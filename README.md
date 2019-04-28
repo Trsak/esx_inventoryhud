@@ -16,6 +16,9 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 - Fully configurable (check config.lua and html/js/config.js)
 - Locale files included (check locales/ and html/locales/ directories)
 
+## Addons
+* [Vehicle trunk inventory](https://github.com/Trsak/esx_inventoryhud_trunk/tree/master)
+
 ## Screens
 * [https://i.imgur.com/eHD01Tl.png](https://i.imgur.com/eHD01Tl.png)
 
