@@ -76,8 +76,7 @@ local Keys = {
     ["N9"] = 118
 }
 
-local anotherPlayerInventory = false
-local anotherPlayer = 0
+local trunkData = nil
 local isInInventory = false
 ESX = nil
 
@@ -100,7 +99,6 @@ Citizen.CreateThread(
         while true do
             Citizen.Wait(0)
             if IsControlJustReleased(0, Config.OpenControl) and IsInputDisabled(0) then
-                anotherPlayerInventory = false
                 openInventory()
             end
         end
@@ -112,9 +110,24 @@ function openInventory()
     isInInventory = true
     SendNUIMessage(
         {
-            action = "display"
+            action = "display",
+            type = "normal"
         }
     )
+    SetNuiFocus(true, true)
+end
+
+function openTrunkInventory()
+    loadPlayerInventory()
+    isInInventory = true
+
+    SendNUIMessage(
+        {
+            action = "display",
+            type = "trunk"
+        }
+    )
+
     SetNuiFocus(true, true)
 end
 
@@ -160,7 +173,7 @@ RegisterNUICallback(
         if not foundPlayers then
             exports.pNotify:SendNotification(
                 {
-                    text = _U('players_nearby'),
+                    text = _U("players_nearby"),
                     type = "error",
                     timeout = 3000,
                     layout = "bottomCenter",
@@ -177,6 +190,42 @@ RegisterNUICallback(
                 }
             )
         end
+
+        cb("ok")
+    end
+)
+
+RegisterNUICallback(
+    "PutIntoTrunk",
+    function(data, cb)
+        if IsPedSittingInAnyVehicle(playerPed) then
+            return
+        end
+
+        if type(data.number) == "number" and math.floor(data.number) == data.number then
+            TriggerServerEvent("esx_trunk:putItem", trunkData.plate, data.item.type, data.item.name, tonumber(data.number), trunkData.max, trunkData.myVeh)
+        end
+
+        Wait(500)
+        loadPlayerInventory()
+
+        cb("ok")
+    end
+)
+
+RegisterNUICallback(
+    "TakeFromTrunk",
+    function(data, cb)
+        if IsPedSittingInAnyVehicle(playerPed) then
+            return
+        end
+
+        if type(data.number) == "number" and math.floor(data.number) == data.number then
+            TriggerServerEvent("esx_trunk:getItem", trunkData.plate, data.item.type, data.item.name, tonumber(data.number), trunkData.max, trunkData.myVeh)
+        end
+
+        Wait(500)
+        loadPlayerInventory()
 
         cb("ok")
     end
@@ -238,7 +287,7 @@ RegisterNUICallback(
         else
             exports.pNotify:SendNotification(
                 {
-                    text = _U('player_nearby'),
+                    text = _U("player_nearby"),
                     type = "error",
                     timeout = 3000,
                     layout = "bottomCenter",
@@ -273,7 +322,7 @@ function loadPlayerInventory()
             if Config.IncludeCash and money ~= nil and money > 0 then
                 for key, value in pairs(accounts) do
                     moneyData = {
-                        label = _U('cash'),
+                        label = _U("cash"),
                         name = "cash",
                         type = "item_money",
                         count = money,
@@ -354,15 +403,93 @@ function loadPlayerInventory()
     )
 end
 
-RegisterNetEvent("esx_inventoryhud:openPlayerInventory")
+RegisterNetEvent("esx_inventoryhud:openTrunkInventory")
 AddEventHandler(
-    "esx_inventoryhud:openPlayerInventory",
-    function(player)
-        anotherPlayerInventory = true
-        anotherPlayer = player
-        openInventory()
+    "esx_inventoryhud:openTrunkInventory",
+    function(data, blackMoney, inventory, weapons)
+        setTrunkInventoryData(data, blackMoney, inventory, weapons)
+        openTrunkInventory()
     end
 )
+
+RegisterNetEvent("esx_inventoryhud:refreshTrunkInventory")
+AddEventHandler(
+    "esx_inventoryhud:refreshTrunkInventory",
+    function(data, blackMoney, inventory, weapons)
+        setTrunkInventoryData(data, blackMoney, inventory, weapons)
+    end
+)
+
+function setTrunkInventoryData(data, blackMoney, inventory, weapons)
+    trunkData = data
+
+    SendNUIMessage(
+        {
+            action = "setInfoText",
+            text = data.text
+        }
+    )
+
+    items = {}
+
+    if blackMoney >= 0 then
+        accountData = {
+            label = _U("black_money"),
+            count = blackMoney,
+            type = "item_account",
+            name = "black_money",
+            usable = false,
+            rare = false,
+            limit = -1,
+            canRemove = false
+        }
+        table.insert(items, accountData)
+    end
+
+    if inventory ~= nil then
+        for key, value in pairs(inventory) do
+            if inventory[key].count <= 0 then
+                inventory[key] = nil
+            else
+                inventory[key].type = "item_standard"
+                inventory[key].usable = false
+                inventory[key].rare = false
+                inventory[key].limit = -1
+                inventory[key].canRemove = false
+                table.insert(items, inventory[key])
+            end
+        end
+    end
+
+    if Config.IncludeWeapons and weapons ~= nil then
+        for key, value in pairs(weapons) do
+            local weaponHash = GetHashKey(weapons[key].name)
+            local playerPed = PlayerPedId()
+            if weapons[key].name ~= "WEAPON_UNARMED" then
+                table.insert(
+                    items,
+                    {
+                        label = weapons[key].label,
+                        count = weapons[key].ammo,
+                        limit = -1,
+                        type = "item_weapon",
+                        name = weapons[key].name,
+                        usable = false,
+                        rare = false,
+                        canRemove = false
+                    }
+                )
+            end
+        end
+    end
+
+    SendNUIMessage(
+        {
+            action = "setSecondInventoryItems",
+            itemList = items
+        }
+    )
+end
 
 Citizen.CreateThread(
     function()

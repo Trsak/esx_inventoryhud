@@ -5,13 +5,13 @@
     text-transform: uppercase;
     color: white;
     text-shadow:
-     -0.5px -0.5px 0 #000,  
-      0.5px -0.5px 0 #000,
-      -0.5px 0.5px 0 #000,
-       0.5px 0.5px 0 #000;
-  }
+        -0.5px -0.5px 0 #000,
+        0.5px -0.5px 0 #000,
+        -0.5px 0.5px 0 #000,
+        0.5px 0.5px 0 #000;
+}
 
-  .ui {
+.ui {
     position: relative;
     left: 0;
     top: 0;
@@ -20,27 +20,27 @@
     background-color: rgba(0, 0, 0, 0.35);
     display: none;
     z-index: 0;
-  }
+}
 
-  .inventory {
+.inventory {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 1550px;
     height: 600px;
-    box-shadow: 1px 1px 10px rgba(0,0,0,.4);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
     background-color: rgba(17, 5, 17, 0.2);
-  }
+}
 
-  #playerInventory {
+#playerInventory {
     width: 625px;
     height: 600px;
     float: left;
     overflow-y: scroll
-  }
+}
 
-  #controls {
+#controls {
     width: 300px;
     height: 600px;
     float: left;
@@ -48,33 +48,33 @@
     background-color: rgba(17, 5, 17, 0.2);
     left: 0;
     top: 0;
-  }
+}
 
-  #otherInventory {
+#otherInventory {
     width: 625px;
     height: 600px;
     float: left;
     overflow-y: scroll
-  }
+}
 
 #count {
-  border: none;
-  outline: none;
-  font-size: 18px;
+    border: none;
+    outline: none;
+    font-size: 18px;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0; 
+    margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 
 .slot {
-    float:left;
+    float: left;
     width: 117px;
     height: 117px;
     background-color: rgba(17, 5, 17, 0.6);
@@ -86,12 +86,13 @@ input[type=number] {
     opacity: 0.8;
 }
 
-.item {
+.item,
+.item-other {
     width: 117px;
     height: 117px;
-    background-size: contain;             
-    background-repeat:   no-repeat;
-    background-position: center center;  
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .item-name {
@@ -107,8 +108,9 @@ input[type=number] {
     background-color: rgba(17, 5, 17, 0.8);
 }
 
-.ui-draggable-dragging .item-name, .ui-draggable-dragging .item-count {
-  display: none;
+.ui-draggable-dragging .item-name,
+.ui-draggable-dragging .item-count {
+    display: none;
 }
 
 .item-count {
@@ -118,6 +120,17 @@ input[type=number] {
     width: 114px;
     height: 20px;
     z-index: 500;
+}
+
+.info-div {
+    text-align: center;
+    padding: 5px;
+    background-color: rgba(17, 5, 17, 0.6);
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
 }
 
 .controls-div {
@@ -138,63 +151,63 @@ input[type=number] {
 }
 
 .control.disabled {
-  background-color: rgba(17, 5, 17, 0.1);
+    background-color: rgba(17, 5, 17, 0.1);
 }
 
 .hoverControl {
-  background-color: rgb(10, 2, 10);
+    background-color: rgb(10, 2, 10);
 }
 
 .item-name-bg {
-  width: 100%;
-  width: 117px;
-  height: 20px;
-  position: absolute;
-  bottom: 0;
+    width: 100%;
+    width: 117px;
+    height: 20px;
+    position: absolute;
+    bottom: 0;
 }
 
-#playerInventory::-webkit-scrollbar-track, #otherInventory::-webkit-scrollbar-track
-{
-	background-color: none;
-	border: none;
+#playerInventory::-webkit-scrollbar-track,
+#otherInventory::-webkit-scrollbar-track {
+    background-color: none;
+    border: none;
 }
 
-#playerInventory::-webkit-scrollbar, #otherInventory::-webkit-scrollbar
-{
-	width: 10px;
-	background-color: rgba(17, 5, 17, 0.2);
+#playerInventory::-webkit-scrollbar,
+#otherInventory::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(17, 5, 17, 0.2);
 }
 
-#playerInventory::-webkit-scrollbar-thumb, #otherInventory::-webkit-scrollbar-thumb
-{
-	background-color: rgba(17, 5, 17, 1);
-	border: 2px solid rgba(17, 5, 17, 1);
+#playerInventory::-webkit-scrollbar-thumb,
+#otherInventory::-webkit-scrollbar-thumb {
+    background-color: rgba(17, 5, 17, 1);
+    border: 2px solid rgba(17, 5, 17, 1);
 }
 
 .nearbyPlayerButton {
-  width: 100%;
-  margin-top: 5px;
-	display: block;
-	text-decoration: none;
-  padding: 2px;
-	color: rgba(255, 255, 255, 0.85);
-  background-color: rgba(63, 57, 83, 0.226);
-  text-shadow: none;
-  font-size: 14px!important;
-  outline: none;
-	text-transform: none;
-  text-align: center;
-  line-height: 30px;
-  border: none;
+    width: 100%;
+    margin-top: 5px;
+    display: block;
+    text-decoration: none;
+    padding: 2px;
+    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(63, 57, 83, 0.226);
+    text-shadow: none;
+    font-size: 14px !important;
+    outline: none;
+    text-transform: none;
+    text-align: center;
+    line-height: 30px;
+    border: none;
 }
 
 .nearbyPlayerButton:hover {
-  background-color: rgba(34, 29, 46, 0.8);
+    background-color: rgba(34, 29, 46, 0.8);
 }
 
 #noSecondInventoryMessage {
-  width: 615px;
-  height: 580px;
-  line-height: 580px;
-  text-align: center;
+    width: 615px;
+    height: 580px;
+    line-height: 580px;
+    text-align: center;
 }
