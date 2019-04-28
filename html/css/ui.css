@@ -99,6 +99,7 @@ input[type=number] {
     bottom: 0;
     text-align: center;
     padding-top: 5px;
+    padding-bottom: 5px;
     width: 117px;
     min-height: 20px;
     z-index: 500;
