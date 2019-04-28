@@ -94,7 +94,9 @@ $(document).ready(function () {
         hoverClass: 'hoverControl',
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
-            $.post("http://esx_inventoryhud/UseItem", JSON.stringify({ item: itemData }));
+            if (itemData.usable) {
+                $.post("http://esx_inventoryhud/UseItem", JSON.stringify({ item: itemData }));
+            }
         }
     });
 
@@ -102,7 +104,9 @@ $(document).ready(function () {
         hoverClass: 'hoverControl',
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
-            $.post("http://esx_inventoryhud/GetNearPlayers", JSON.stringify({ item: itemData }));
+            if (itemData.canRemove) {
+                $.post("http://esx_inventoryhud/GetNearPlayers", JSON.stringify({ item: itemData }));
+            }
         }
     });
 
@@ -110,7 +114,9 @@ $(document).ready(function () {
         hoverClass: 'hoverControl',
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
-            $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: itemData, number: parseInt($("#count").val()) }));
+            if (itemData.canRemove) {
+                $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: itemData, number: parseInt($("#count").val()) }));
+            }
         }
     });
 
