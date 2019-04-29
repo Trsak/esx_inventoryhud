@@ -203,7 +203,13 @@ RegisterNUICallback(
         end
 
         if type(data.number) == "number" and math.floor(data.number) == data.number then
-            TriggerServerEvent("esx_trunk:putItem", trunkData.plate, data.item.type, data.item.name, tonumber(data.number), trunkData.max, trunkData.myVeh, data.item.label)
+            local count = tonumber(data.number)
+
+            if data.item.type == "item_weapon" then
+                count = GetAmmoInPedWeapon(PlayerPedId(), GetHashKey(data.item.name))
+            end
+
+            TriggerServerEvent("esx_trunk:putItem", trunkData.plate, data.item.type, data.item.name, count, trunkData.max, trunkData.myVeh, data.item.label)
         end
 
         Wait(500)
