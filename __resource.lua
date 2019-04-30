@@ -31,6 +31,8 @@ files {
     -- JS LOCALES
     'html/locales/cs.js',
     'html/locales/en.js',
+    -- IMAGES
+    'html/img/bullet.png',
     -- ICONS
     'html/img/items/beer.png',
     'html/img/items/binoculars.png',

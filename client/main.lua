@@ -438,7 +438,7 @@ function setTrunkInventoryData(data, blackMoney, inventory, weapons)
 
     items = {}
 
-    if blackMoney >= 0 then
+    if blackMoney > 0 then
         accountData = {
             label = _U("black_money"),
             count = blackMoney,
