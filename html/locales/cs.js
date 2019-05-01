@@ -1,9 +1,5 @@
-var locale = new Object();
-locale.dropItem = "<span class=\"emoji\">🗑️</span> Zahodit";
-locale.useItem = "<span class=\"emoji\">🖐️</span> Použít";
-locale.giveItem = "<span class=\"emoji\">🎁</span> Dát";
-locale.getNumber = "Zadejte počet";
-locale.getPlayer = "Zvolte hráče";
-locale.confirmNumber = "Odeslat";
-locale.closeInventory = "Zavřít";
-locale.searchInventory = "Hledat v inventáři";
+var invLocale = new Object();
+invLocale.dropItem = "Zahodit";
+invLocale.useItem = "Použít";
+invLocale.giveItem = "Dát";
+invLocale.secondInventoryNotAvailable = "Druhý inventář není dostupný";

@@ -1,21 +1,21 @@
 ESX = nil
 
-TriggerEvent('esx:getSharedObject', function(obj)
-	ESX = obj
-end)
-
-TriggerEvent('es:addGroupCommand', 'openinventory', "admin", function(source, args, user)
-	if args[1] then
-		local xPlayer = ESX.GetPlayerFromId(args[1])
-
-		if xPlayer then
-			TriggerClientEvent("esx_inventoryhud:openPlayerInventory", source, xPlayer)
-		else
-			TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, _U('player_not_online'))
-		end
-	else
-		TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, _U('id_not_number'))
+TriggerEvent(
+	"esx:getSharedObject",
+	function(obj)
+		ESX = obj
 	end
-end, function(source, args, user)
-	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, _U('no_permission'))
-end)
+)
+
+ESX.RegisterServerCallback(
+	"esx_inventoryhud:getPlayerInventory",
+	function(source, cb, target)
+		local targetXPlayer = ESX.GetPlayerFromId(target)
+
+		if targetXPlayer ~= nil then
+			cb({inventory = targetXPlayer.inventory, money = targetXPlayer.getMoney(), accounts = targetXPlayer.accounts, weapons = targetXPlayer.loadout})
+		else
+			cb(nil)
+		end
+	end
+)

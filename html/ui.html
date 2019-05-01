@@ -2,194 +2,61 @@
 <html>
 
 <head>
-  <meta name="author" content="Trsak; trsak1@seznam.cz; GameSites.cz">
-  <title>ESX Inventory HUD</title>
-  <link rel="stylesheet" id="themonic-fonts-css" href="css/contextMenu.min.css" type="text/css" media="all" />
-  <link rel="stylesheet" id="themonic-fonts-css" href="css/jquery.dialog.min.css" type="text/css" media="all" />
-  <link rel="stylesheet" id="themonic-fonts-css" href="css/ui.min.css" type="text/css" media="all" />
+    <title>ESX INVENTORY HUD BY TRSAK</title>
+    <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/ui.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 </head>
 
 <body>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="js/config.js"></script>
-  <script type="text/javascript" src="js/contextMenu.min.js"></script>
-  <script type="text/javascript" src="js/jquery.dialog.min.js"></script>
-
-  <div id="inventoryHud">
-    <div id="inventoryElement">
-    </div>
-  </div>
-
-
-  <script type="text/javascript">
-    var imported = document.createElement("script");
-    imported.src = "locales/" + Config.locale + ".js";
-    document.head.appendChild(imported);
-
-    $("document").ready(function () {
-      $("#inventoryHud").hide();
-
-      $("body").on("keyup", function (key) {
-        if (Config.closeKeys.includes(key.which)) {
-          closeInventory();
-        }
-      });
-
-      window.addEventListener("message", function (event) {
-        if (event.data.action == "display") {
-          $("#inventoryHud").fadeIn();
-          $(".controls").remove();
-
-          $("#inventoryHud").append("<div class='controls'><div class='controls-center'><input type='text' id='search' placeholder='" + locale.searchInventory + "'><button id='close'>" + locale.closeInventory + "</button></div></div>");
-
-          $("#search").bind('input', function () {
-            searchFor = $("#search").val().toLowerCase();
-            $(".item").each(function () {
-              label = $(this).data("label").toLowerCase();
-              if (label.indexOf(searchFor) < 0) {
-                $(this).hide();
-              } else {
-                $(this).show();
-              }
+    <script src="js/config.js"></script>
+    <script src="locales/en.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="js/inventory.js"></script>
+    <script>
+        $(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                clickOutside: true
             });
-          });
-
-          $(document).on('keydown', function (event) {
-            $("#search").focus();
-          });
-
-          $("#close").on('click', function (event) {
-            closeInventory();
-          });
-        }
-        else if (event.data.action == "hide") {
-          $("#inventoryHud").fadeOut();
-          $(".controls").fadeOut();
-          $(".site-cm-box").remove();
-          dialog.close();
-        }
-        else if (event.data.action == "setItems") {
-          inventorySetup(event.data.itemList);
-        }
-        else if (event.data.action == "nearPlayers") {
-          if (event.data.what == "give") {
-            selectPlayerToGive(event.data);
-          }
-        }
-      });
-    });
-
-    function selectPlayerToGive(data) {
-      dialog.prompt({
-        title: locale.getPlayer,
-        button: locale.confirmNumber,
-        required: false,
-        item: data,
-        type: data.type,
-        select: true,
-        validate: function (value, data, player) {
-          $.post("http://esx_inventoryhud/GiveItem", JSON.stringify({ player: player, data: data }));
-          return true;
-        }
-      });
-    }
-
-    function dropGetHowMany(item, type) {
-      if (type != "item_weapon") {
-        dialog.prompt({
-          title: locale.getNumber,
-          button: locale.confirmNumber,
-          required: false,
-          item: item,
-          type: type,
-          input: {
-            type: "number"
-          },
-          validate: function (value, item, type) {
-            $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item, type: type, number: parseInt(value) }));
-            return true;
-          }
         });
-      }
-      else {
-        $.post("http://esx_inventoryhud/DropItem", JSON.stringify({ item: item, type: type, number: 0 }));
-      }
-    }
+    </script>
 
-    function giveGetHowMany(item, type) {
-      if (type != "item_weapon") {
-        dialog.prompt({
-          title: locale.getNumber,
-          button: locale.confirmNumber,
-          required: false,
-          item: item,
-          type: type,
-          input: {
-            type: "number"
-          },
-          validate: function (value, item, type) {
-            $.post("http://esx_inventoryhud/GetNearPlayers", JSON.stringify({ type: type, what: "give", item: item, count: value }));
-            return true;
-          }
-        });
-      }
-      else {
-        $.post("http://esx_inventoryhud/GetNearPlayers", JSON.stringify({ type: type, what: "give", item: item, count: 1 }));
-      }
-    }
+    <div class="ui">
+        <div class="inventory">
+            <div id="playerInventory">
+            </div>
+            <div id="controls">
+                <div class="info-div"></div>
+                <div class="controls-div">
+                    <input type="number" class="control" id="count" value="1">
+                    <div class="control" id="use"></div>
+                    <div class="control" id="give"></div>
+                    <div class="control" id="drop"></div>
+                </div>
+            </div>
+            <div id="otherInventory">
+                <div id="noSecondInventoryMessage">
+                </div>
+            </div>
+        </div>
+    </div>
 
-    function closeInventory() {
-      $.post("http://esx_inventoryhud/NUIFocusOff", JSON.stringify({}));
-    }
+    <div id="dialog">
+        <div id="nearPlayers">
+        </div>
+    </div>
 
-    function inventorySetup(items) {
-      $("#inventoryElement").html("");
-
-      $.each(items, function (index, item) {
-        count = item.count;
-
-        if (item.limit > 0) {
-          count = count + " / " + item.limit;
-        }
-
-        $("#inventoryElement").append("<div data-label='" + item.label + "' style='background-image: url(\"img/items/" + item.name + ".png\");' id='item-" + index + "' class='item'><div class='count'>" + count + "</div><div class='text'>" + item.label + "</div></div>")
-
-        var data = [];
-
-        if (item.usable) {
-          data.push({
-            text: locale.useItem,
-            action: function () {
-              $.post("http://esx_inventoryhud/UseItem", JSON.stringify({ item: item.name }));
-            }
-          });
-        }
-
-        if (item.canRemove) {
-          data.push({
-            text: locale.giveItem,
-            action: function () {
-              giveGetHowMany(item.name, item.type);
-            }
-          });
-
-          data.push({
-            text: locale.dropItem,
-            action: function () {
-              dropGetHowMany(item.name, item.type);
-            }
-          });
-        }
-
-        if (data.length > 0) {
-          $("#item-" + index).contextMenu([data], {
-            offsetX: 1,
-            offsetY: 1,
-          });
-        }
-      });
-    }
-  </script>
 </body>
+
+<script>
+    $(document).ready(function () {
+        $("#use").html(invLocale.useItem);
+        $("#give").html(invLocale.giveItem);
+        $("#drop").html(invLocale.dropItem);
+        $("#noSecondInventoryMessage").html(invLocale.secondInventoryNotAvailable);
+    });
+</script>
 
 </html>
