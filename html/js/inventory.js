@@ -1,8 +1,10 @@
 var type = "normal";
+var disabled = false;
 
 window.addEventListener("message", function (event) {
     if (event.data.action == "display") {
         type = event.data.type
+        disabled = false;
 
         if (type === "normal") {
             $(".info-div").hide();
@@ -26,6 +28,10 @@ window.addEventListener("message", function (event) {
             zIndex: 99999,
             revert: 'invalid',
             start: function (event, ui) {
+                if (disabled) {
+                    return false;
+                }
+
                 $(this).css('background-image', 'none');
                 itemData = $(this).data("item");
 
@@ -40,10 +46,13 @@ window.addEventListener("message", function (event) {
             },
             stop: function () {
                 itemData = $(this).data("item");
-                $(this).css('background-image', 'url(\'img/items/' + itemData.name + '.png\'');
-                $("#drop").removeClass("disabled");
-                $("#use").removeClass("disabled");
-                $("#give").removeClass("disabled");
+
+                if (itemData !== undefined && itemData.name !== undefined) {
+                    $(this).css('background-image', 'url(\'img/items/' + itemData.name + '.png\'');
+                    $("#drop").removeClass("disabled");
+                    $("#use").removeClass("disabled");
+                    $("#give").removeClass("disabled");
+                }
             }
         });
     } else if (event.data.action == "setSecondInventoryItems") {
@@ -97,6 +106,14 @@ function secondInventorySetup(items) {
         $('#itemOther-' + index).data('item', item);
         $('#itemOther-' + index).data('inventory', "second");
     });
+}
+
+function disableInventory(ms) {
+    disabled = true;
+
+    setInterval(function () {
+        disabled = false;
+    }, ms);
 }
 
 function setCount(item) {
@@ -190,6 +207,7 @@ $(document).ready(function () {
             itemInventory = ui.draggable.data("inventory");
 
             if (type === "trunk" && itemInventory === "second") {
+                disableInventory(500);
                 $.post("http://esx_inventoryhud/TakeFromTrunk", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
@@ -204,6 +222,7 @@ $(document).ready(function () {
             itemInventory = ui.draggable.data("inventory");
 
             if (type === "trunk" && itemInventory === "main") {
+                disableInventory(500);
                 $.post("http://esx_inventoryhud/PutIntoTrunk", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
