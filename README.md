@@ -22,7 +22,7 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 ## Screens
 * [https://i.imgur.com/eHD01Tl.png](https://i.imgur.com/eHD01Tl.png)
 
-## Download & Installation
+## Download
 
 ### Using Git
 ```
@@ -35,26 +35,7 @@ git clone https://github.com/Trsak/esx_inventoryhud [esx]/esx_inventoryhud
 - Put it in the `[esx]` directory
 
 ## Installation
-- Open `es_extended`, then find and remove this code in `client/main.lua`:
-```
--- Menu interactions
-Citizen.CreateThread(function()
-	while true do
-
-		Citizen.Wait(0)
-
-		if IsControlJustReleased(0, Keys['F2']) and IsInputDisabled(0) and not isDead and not ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
-			ESX.ShowInventory()
-		end
-
-	end
-end)
-```
-- Add this to your `server.cfg`:
-
-```
-start esx_inventoryhud
-```
+Check [wiki page](https://github.com/Trsak/esx_inventoryhud/wiki)
 
 ## Config files
 * config.lua
