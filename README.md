@@ -13,6 +13,7 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 - Cash included
 - Accounts support (bank, black money, ...)
 - Weapons support
+- esx_property support
 - Fully configurable (check config.lua and html/js/config.js)
 - Locale files included (check locales/ and html/locales/ directories)
 
