@@ -61,7 +61,6 @@ function setTrunkInventoryData(data, blackMoney, inventory, weapons)
     if Config.IncludeWeapons and weapons ~= nil then
         for key, value in pairs(weapons) do
             local weaponHash = GetHashKey(weapons[key].name)
-            local playerPed = PlayerPedId()
             if weapons[key].name ~= "WEAPON_UNARMED" then
                 table.insert(
                     items,

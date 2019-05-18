@@ -1,4 +1,4 @@
-# esx_inventoryhud 2.1.2
+# esx_inventoryhud 2.2.0
 Inventory HUD for ESX. You can open and close inventory using F2. Part of code was taken from [es_extended](https://github.com/ESX-Org/es_extended).
 
 ## Requirements

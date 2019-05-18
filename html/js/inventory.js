@@ -10,6 +10,8 @@ window.addEventListener("message", function (event) {
             $(".info-div").hide();
         } else if (type === "trunk") {
             $(".info-div").show();
+        } else if (type === "property") {
+            $(".info-div").hide();
         }
 
         $(".ui").fadeIn();
@@ -212,6 +214,12 @@ $(document).ready(function () {
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));
+            } else if (type === "property" && itemInventory === "second") {
+                disableInventory(500);
+                $.post("http://esx_inventoryhud/TakeFromProperty", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
             }
         }
     });
@@ -224,6 +232,12 @@ $(document).ready(function () {
             if (type === "trunk" && itemInventory === "main") {
                 disableInventory(500);
                 $.post("http://esx_inventoryhud/PutIntoTrunk", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
+            } else if (type === "property" && itemInventory === "main") {
+                disableInventory(500);
+                $.post("http://esx_inventoryhud/PutIntoProperty", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));

@@ -11,6 +11,7 @@ client_scripts {
   "client/main.lua",
   "client/trunk.lua",
   "client/property.lua",
+  "client/player.lua",
   "locales/cs.lua",
   "locales/en.lua",
   "locales/fr.lua",
