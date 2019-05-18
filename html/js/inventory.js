@@ -12,6 +12,8 @@ window.addEventListener("message", function (event) {
             $(".info-div").show();
         } else if (type === "property") {
             $(".info-div").hide();
+        } else if (type === "player") {
+            $(".info-div").show();
         }
 
         $(".ui").fadeIn();
@@ -220,6 +222,12 @@ $(document).ready(function () {
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));
+            } else if (type === "player" && itemInventory === "second") {
+                disableInventory(500);
+                $.post("http://esx_inventoryhud/TakeFromPlayer", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
             }
         }
     });
@@ -238,6 +246,12 @@ $(document).ready(function () {
             } else if (type === "property" && itemInventory === "main") {
                 disableInventory(500);
                 $.post("http://esx_inventoryhud/PutIntoProperty", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
+            } else if (type === "player" && itemInventory === "main") {
+                disableInventory(500);
+                $.post("http://esx_inventoryhud/PutIntoPlayer", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));
