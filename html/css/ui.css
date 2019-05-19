@@ -160,7 +160,7 @@ input[type=number] {
 }
 
 .hoverControl {
-    background-color: rgb(10, 2, 10);
+    background-color: rgb(0, 255, 0);
 }
 
 .item-name-bg {
@@ -207,7 +207,7 @@ input[type=number] {
 }
 
 .nearbyPlayerButton:hover {
-    background-color: rgba(34, 29, 46, 0.8);
+    background-color: rgba(0, 255, 0, 0.8);
 }
 
 #noSecondInventoryMessage {
