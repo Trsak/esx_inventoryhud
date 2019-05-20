@@ -41,6 +41,8 @@ files {
   "html/img/bullet.png",
   -- ICONS
   "html/img/items/alive_chicken.png",
+  "html/img/items/fish.png",
+  "html/img/items/fishingrod.png",
   "html/img/items/bait.png",
   "html/img/items/bandage.png",
   "html/img/items/beer.png",
