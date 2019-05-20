@@ -170,7 +170,7 @@ RegisterNUICallback(
             TriggerServerEvent("esx_inventoryhud:tradePlayerItem", GetPlayerServerId(PlayerId()), targetPlayer, data.item.type, data.item.name, count)
         end
 
-        Wait(450)
+        Wait(250)
         refreshPlayerInventory()
         loadPlayerInventory()
 
@@ -195,7 +195,7 @@ RegisterNUICallback(
             TriggerServerEvent("esx_inventoryhud:tradePlayerItem", targetPlayer, GetPlayerServerId(PlayerId()), data.item.type, data.item.name, count)
         end
 
-        Wait(450)
+        Wait(250)
         refreshPlayerInventory()
         loadPlayerInventory()
 

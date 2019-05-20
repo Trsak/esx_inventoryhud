@@ -188,7 +188,7 @@ RegisterNUICallback(
         if shouldCloseInventory(data.item.name) then
             closeInventory()
         else
-            Citizen.Wait(500)
+            Citizen.Wait(250)
             loadPlayerInventory()
         end
 
@@ -207,7 +207,7 @@ RegisterNUICallback(
             TriggerServerEvent("esx:removeInventoryItem", data.item.type, data.item.name, data.number)
         end
 
-        Wait(500)
+        Wait(250)
         loadPlayerInventory()
 
         cb("ok")
@@ -236,7 +236,7 @@ RegisterNUICallback(
             end
 
             TriggerServerEvent("esx:giveInventoryItem", data.player, data.item.type, data.item.name, count)
-            Wait(500)
+            Wait(250)
             loadPlayerInventory()
         else
             exports.pNotify:SendNotification(
