@@ -173,6 +173,7 @@ $(document).ready(function () {
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
             if (itemData.usable) {
+                disableInventory(300);
                 $.post("http://esx_inventoryhud/UseItem", JSON.stringify({
                     item: itemData
                 }));
@@ -185,6 +186,7 @@ $(document).ready(function () {
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
             if (itemData.canRemove) {
+                disableInventory(300);
                 $.post("http://esx_inventoryhud/GetNearPlayers", JSON.stringify({
                     item: itemData
                 }));
@@ -197,6 +199,7 @@ $(document).ready(function () {
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
             if (itemData.canRemove) {
+                disableInventory(300);
                 $.post("http://esx_inventoryhud/DropItem", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
