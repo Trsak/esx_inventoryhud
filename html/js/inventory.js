@@ -1,5 +1,6 @@
 var type = "normal";
 var disabled = false;
+var disabledFunction = null;
 
 window.addEventListener("message", function (event) {
     if (event.data.action == "display") {
@@ -112,12 +113,40 @@ function secondInventorySetup(items) {
     });
 }
 
+function Interval(time) {
+    var timer = false;
+    this.start = function () {
+        if (this.isRunning()) {
+            clearInterval(timer);
+            timer = false;
+        }
+
+        timer = setInterval(function () {
+            disabled = false;
+        }, time);
+    };
+    this.stop = function () {
+        clearInterval(timer);
+        timer = false;
+    };
+    this.isRunning = function () {
+        return timer !== false;
+    };
+}
+
 function disableInventory(ms) {
     disabled = true;
 
-    setInterval(function () {
-        disabled = false;
-    }, ms);
+    if (disabledFunction === null) {
+        disabledFunction = new Interval(ms);
+        disabledFunction.start();
+    } else {
+        if (disabledFunction.isRunning()) {
+            disabledFunction.stop();
+        }
+
+        disabledFunction.start();
+    }
 }
 
 function setCount(item) {
