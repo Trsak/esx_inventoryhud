@@ -2,7 +2,7 @@
 local targetPlayer
 local targetPlayerName
 
-
+--[[
 Citizen.CreateThread(
     function()
         TriggerEvent(
@@ -24,7 +24,7 @@ AddEventHandler(
         end
     end
 )
-
+]]--
 
 RegisterNetEvent("esx_inventoryhud:openPlayerInventory")
 AddEventHandler(
