@@ -381,6 +381,7 @@ Citizen.CreateThread(
                 DisableControlAction(0, 263, true) -- Melee Attack 1
                 DisableControlAction(0, Keys["W"], true) -- W
                 DisableControlAction(0, Keys["A"], true) -- A
+                DisableControlAction(0, Keys["U"], true) -- U
                 DisableControlAction(0, 31, true) -- S (fault in Keys table!)
                 DisableControlAction(0, 30, true) -- D (fault in Keys table!)
 

@@ -60,6 +60,8 @@ AddEventHandler(
 		end
 	end
 )
+--[[
+	-- remove player ability to open inventory
 
 RegisterCommand(
 	"openinventory",
@@ -78,3 +80,4 @@ RegisterCommand(
 		end
 	end
 )
+]]

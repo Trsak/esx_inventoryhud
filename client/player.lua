@@ -1,7 +1,8 @@
+
 local targetPlayer
 local targetPlayerName
 
---[[ Remove player ability to open inventory
+
 Citizen.CreateThread(
     function()
         TriggerEvent(
@@ -23,7 +24,7 @@ AddEventHandler(
         end
     end
 )
-]]
+
 
 RegisterNetEvent("esx_inventoryhud:openPlayerInventory")
 AddEventHandler(
