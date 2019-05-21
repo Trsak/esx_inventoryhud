@@ -6,6 +6,6 @@ Locales["ptbr"] = {
 	["openinv_help"] = "Abrir o inventário de outra pessoa",
 	["openinv_id"] = "ID do jogador",
 	["no_permissions"] = "Você não tem permissão para fazer isso!",
-	["no_player"] = "Não encontramos ninguem com esse ID!",
+	["no_player"] = "Não encontramos ninguém com esse ID!",
 	["player_inventory"] = "Inventário do jogador"
 }
