@@ -15,6 +15,7 @@ client_scripts {
   "locales/cs.lua",
   "locales/en.lua",
   "locales/fr.lua",
+  "locales/es.lua",
   "config.lua"
 }
 
@@ -24,6 +25,7 @@ server_scripts {
   "locales/cs.lua",
   "locales/en.lua",
   "locales/fr.lua",
+  "locales/es.lua",
   "config.lua"
 }
 
@@ -37,6 +39,7 @@ files {
   "html/locales/cs.js",
   "html/locales/en.js",
   "html/locales/fr.js",
+  "html/locales/es.js",
   -- IMAGES
   "html/img/bullet.png",
   -- ICONS
