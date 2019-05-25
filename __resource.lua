@@ -40,7 +40,10 @@ files {
   -- IMAGES
   "html/img/bullet.png",
   -- ICONS
-  "html/img/items/alive_chicken.png",
+  "html/img/items/vine.png",
+  "html/img/items/jus_raisin.png",
+  "html/img/items/grand_cru.png",
+  "html/img/items/raisin.png",
   "html/img/items/fish.png",
   "html/img/items/fishingrod.png",
   "html/img/items/bait.png",

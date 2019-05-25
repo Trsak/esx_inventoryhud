@@ -64,7 +64,7 @@ AddEventHandler(
 RegisterCommand(
 	"openinventory",
 	function(source, args, rawCommand)
-		if IsPlayerAceAllowed(source, "command.openinventory") then
+		if IsPlayerAceAllowed(source, "inventory.openinventory") then
 			local target = tonumber(args[1])
 			local targetXPlayer = ESX.GetPlayerFromId(target)
 
