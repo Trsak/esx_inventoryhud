@@ -39,13 +39,14 @@ window.addEventListener("message", function (event) {
 
                 $(this).css('background-image', 'none');
                 itemData = $(this).data("item");
+                itemInventory = $(this).data("inventory");
 
-                if (!itemData.canRemove) {
+                if (itemInventory == "second" || !itemData.canRemove) {
                     $("#drop").addClass("disabled");
                     $("#give").addClass("disabled");
                 }
 
-                if (!itemData.usable) {
+                if (itemInventory == "second" || !itemData.usable) {
                     $("#use").addClass("disabled");
                 }
             },
@@ -201,6 +202,17 @@ $(document).ready(function () {
         hoverClass: 'hoverControl',
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
+
+            if (itemData == undefined || itemData.usable == undefined) {
+                return;
+            }
+
+            itemInventory = ui.draggable.data("inventory");
+
+            if (itemInventory == undefined || itemInventory == "second") {
+                return;
+            }
+
             if (itemData.usable) {
                 disableInventory(300);
                 $.post("http://esx_inventoryhud/UseItem", JSON.stringify({
@@ -214,6 +226,17 @@ $(document).ready(function () {
         hoverClass: 'hoverControl',
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
+
+            if (itemData == undefined || itemData.canRemove == undefined) {
+                return;
+            }
+
+            itemInventory = ui.draggable.data("inventory");
+
+            if (itemInventory == undefined || itemInventory == "second") {
+                return;
+            }
+
             if (itemData.canRemove) {
                 disableInventory(300);
                 $.post("http://esx_inventoryhud/GetNearPlayers", JSON.stringify({
@@ -227,6 +250,17 @@ $(document).ready(function () {
         hoverClass: 'hoverControl',
         drop: function (event, ui) {
             itemData = ui.draggable.data("item");
+
+            if (itemData == undefined || itemData.canRemove == undefined) {
+                return;
+            }
+
+            itemInventory = ui.draggable.data("inventory");
+
+            if (itemInventory == undefined || itemInventory == "second") {
+                return;
+            }
+
             if (itemData.canRemove) {
                 disableInventory(300);
                 $.post("http://esx_inventoryhud/DropItem", JSON.stringify({

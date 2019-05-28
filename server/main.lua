@@ -54,8 +54,6 @@ AddEventHandler(
 			if not targetXPlayer.hasWeapon(itemName) then
 				sourceXPlayer.removeWeapon(itemName)
 				targetXPlayer.addWeapon(itemName, itemCount)
-
-				local weaponLabel = ESX.GetWeaponLabel(itemName)
 			end
 		end
 	end
