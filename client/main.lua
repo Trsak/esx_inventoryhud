@@ -335,7 +335,7 @@ function loadPlayerInventory()
                 for key, value in pairs(weapons) do
                     local weaponHash = GetHashKey(weapons[key].name)
                     local playerPed = PlayerPedId()
-                    if HasPedGotWeapon(playerPed, weaponHash, false) and weapons[key].name ~= "WEAPON_UNARMED" then
+                    if weapons[key].name ~= "WEAPON_UNARMED" then
                         local ammo = GetAmmoInPedWeapon(playerPed, weaponHash)
                         table.insert(
                             items,
