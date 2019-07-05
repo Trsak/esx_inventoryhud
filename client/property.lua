@@ -4,6 +4,7 @@ AddEventHandler(
     function(data)
         setPropertyInventoryData(data)
         openPropertyInventory()
+        refreshPropertyInventory()
     end
 )
 
