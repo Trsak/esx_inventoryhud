@@ -14,6 +14,7 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 - Accounts support (bank, black money, ...)
 - Weapons support
 - esx_property support
+- Easy esx_shops integration
 - Another players inventory support
 - Fully configurable (check config.lua and html/js/config.js)
 - Locale files included (check locales/ and html/locales/ directories)
@@ -22,7 +23,7 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 * [Vehicle trunk inventory](https://github.com/Trsak/esx_inventoryhud_trunk/tree/master)
 
 ## Screens
-* [https://i.imgur.com/eHD01Tl.png](https://i.imgur.com/eHD01Tl.png)
+![Inventory screen](https://i.imgur.com/eHD01Tl.png)
 
 ## Commands
 * **/openinventory <player_id>** - opens given player inventory (`inventory.openinventory` permission)
