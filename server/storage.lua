@@ -76,8 +76,8 @@ AddEventHandler(
                         else
                             inventory.removeItem(item, count)
                             xPlayer.addInventoryItem(item, count)
-                            
-                            TriggerEvent("esx_adminmenu:logSociety", storage, GetPlayerIdentifiers(_source), xPlayer, "TAKE", inventoryItem.label, count, inventoryItem.count-count)
+
+                            TriggerEvent("esx_adminmenu:logSociety", storage, GetPlayerIdentifiers(_source), xPlayer, "TAKE", inventoryItem.label, count, inventoryItem.count - count)
 
                             TriggerClientEvent(
                                 "pNotify:SendNotification",
@@ -182,7 +182,7 @@ AddEventHandler(
                     function(inventory)
                         xPlayer.removeInventoryItem(item, count)
                         inventory.addItem(item, count)
-                        
+
                         local inventoryItem = inventory.getItem(item)
                         TriggerEvent("esx_adminmenu:logSociety", storage, GetPlayerIdentifiers(_source), xPlayer, "PUT", inventoryItem.label, count, inventoryItem.count)
 
@@ -220,7 +220,7 @@ AddEventHandler(
                     function(account)
                         account.addMoney(count)
 
-                        TriggerEvent("esx_adminmenu:logSociety", storage, GetPlayerIdentifiers(_source), xPlayer, "PUT", "Špinavé prachy", count, account.money+count)
+                        TriggerEvent("esx_adminmenu:logSociety", storage, GetPlayerIdentifiers(_source), xPlayer, "PUT", "Špinavé prachy", count, account.money + count)
                     end
                 )
             else

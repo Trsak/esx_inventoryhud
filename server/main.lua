@@ -62,7 +62,7 @@ AddEventHandler(
 					components = {}
 				end
 
-				for i=1, #components do 
+				for i = 1, #components do
 					targetXPlayer.addWeaponComponent(itemName, components[i])
 				end
 			end
