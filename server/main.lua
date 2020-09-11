@@ -104,7 +104,7 @@ AddEventHandler(
 						"pNotify:SendNotification",
 						_source,
 						{
-							text = "Tolik se toho k tobě nevejde!",
+							text = _U("not_enough_space"),
 							type = "error",
 							timeout = 3000
 						}
@@ -120,7 +120,7 @@ AddEventHandler(
 							"pNotify:SendNotification",
 							_source,
 							{
-								text = "Zakoupil jsi " .. amount .. "x " .. item.label .. " za $" .. item.price,
+								text = _U("bought", amount, item.label, item.price),
 								type = "success",
 								timeout = 3000
 							}
@@ -130,7 +130,7 @@ AddEventHandler(
 							"pNotify:SendNotification",
 							_source,
 							{
-								text = "Nemáš dostatek peněz!",
+								text = _U("not_enough_money"),
 								type = "error",
 								timeout = 3000
 							}
@@ -148,7 +148,7 @@ AddEventHandler(
 						"pNotify:SendNotification",
 						_source,
 						{
-							text = "Zakoupil jsi " .. item.label .. " za $" .. item.price,
+							text = _U("bought", 1, item.label, item.price),
 							type = "success",
 							timeout = 3000
 						}
@@ -158,7 +158,7 @@ AddEventHandler(
 						"pNotify:SendNotification",
 						_source,
 						{
-							text = "Tuto zbraň již vlastníš!",
+							text = _U("already_have_weapon"),
 							type = "error",
 							timeout = 3000
 						}
@@ -169,7 +169,7 @@ AddEventHandler(
 					"pNotify:SendNotification",
 					_source,
 					{
-						text = "Nemáš dostatek peněz!",
+						text = _U("not_enough_money"),
 						type = "error",
 						timeout = 3000
 					}

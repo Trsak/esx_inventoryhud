@@ -22,7 +22,7 @@ function setShopData(zone, items)
     SendNUIMessage(
         {
             action = "setInfoText",
-            text = "Obchod"
+            text = _U("store")
         }
     )
 
