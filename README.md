@@ -15,6 +15,7 @@ Inventory HUD for ESX. You can open and close inventory using F2. Part of code w
 - Weapons support
 - esx_property support
 - Easy esx_shops integration
+- Job (society) storages
 - Another players inventory support
 - Fully configurable (check config.lua and html/js/config.js)
 - Locale files included (check locales/ and html/locales/ directories)
