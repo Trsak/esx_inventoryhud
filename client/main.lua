@@ -107,6 +107,7 @@ Citizen.CreateThread(
 function openInventory()
     loadPlayerInventory()
     isInInventory = true
+    TriggerEvent('randPickupAnim')
     SendNUIMessage(
         {
             action = "display",
@@ -118,6 +119,7 @@ end
 
 function closeInventory()
     isInInventory = false
+    TriggerEvent('randPickupAnim')
     SendNUIMessage(
         {
             action = "hide"
@@ -438,3 +440,19 @@ AddEventHandler(
         end
     end
 )
+
+
+function loadAnimDict( dict )
+    while ( not HasAnimDictLoaded( dict ) ) do
+    RequestAnimDict( dict )
+    Citizen.Wait( 5 )
+    end
+    end
+
+    RegisterNetEvent('randPickupAnim')
+    AddEventHandler('randPickupAnim', function()
+    loadAnimDict('pickup_object')
+    TaskPlayAnim(PlayerPedId(),'pickup_object', 'putdown_low',5.0, 1.5, 1.0, 48, 0.0, 0, 0, 0)
+    Wait(1000)
+    ClearPedSecondaryTask(PlayerPedId())
+    end)
