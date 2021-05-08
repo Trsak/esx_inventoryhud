@@ -9,6 +9,8 @@
         0.5px -0.5px 0 #000,
         -0.5px 0.5px 0 #000,
         0.5px 0.5px 0 #000;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .ui {
@@ -27,34 +29,36 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 1550px;
+    width: 1590px;
     height: 600px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
-    background-color: rgba(17, 5, 17, 0.2);
+    overflow: hidden
 }
 
 #playerInventory {
-    width: 625px;
+    width: 615px;
     height: 600px;
     float: left;
-    overflow-y: scroll
+    overflow-y: scroll;
+    margin-right: 40px;
+    background-color: rgba(0, 0, 0, 0.301);
 }
 
 #controls {
-    width: 300px;
-    height: 600px;
+    width: 280px;
+    height: 300px;
+    margin-top: 150px;
     float: left;
-    position: relative;
-    background-color: rgba(17, 5, 17, 0.2);
-    left: 0;
-    top: 0;
+    margin-right: 40px;
+    background-color: rgba(0, 0, 0, 0.301);
 }
 
 #otherInventory {
-    width: 625px;
+    width: 615px;
     height: 600px;
     float: left;
-    overflow-y: scroll
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: rgba(0, 0, 0, 0.301);
 }
 
 #count {
@@ -148,7 +152,8 @@ input[type=number] {
 .control {
     width: 150px;
     height: 40px;
-    background-color: rgba(17, 5, 17, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgb(116, 0, 0);
     margin: 10px;
     text-align: center;
     vertical-align: middle;
@@ -179,14 +184,13 @@ input[type=number] {
 
 #playerInventory::-webkit-scrollbar,
 #otherInventory::-webkit-scrollbar {
-    width: 10px;
-    background-color: rgba(17, 5, 17, 0.2);
+    width: 2.5px;
+    background-color: rgb(116, 0, 0);
 }
 
 #playerInventory::-webkit-scrollbar-thumb,
 #otherInventory::-webkit-scrollbar-thumb {
-    background-color: rgba(17, 5, 17, 1);
-    border: 2px solid rgba(17, 5, 17, 1);
+    background-color: rgb(83, 1, 1);
 }
 
 .nearbyPlayerButton {
@@ -217,19 +221,21 @@ input[type=number] {
     text-align: center;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1700px) {
     .inventory {
-        width: 1300px;
+        width: 1400px;
     }
 
     #playerInventory {
         width: 550px;
+        margin-right: 24px;
     }
-
+    
     #controls {
-        width: 200px;
+        width: 250px;
+        margin-right: 24px;
     }
-
+    
     #otherInventory {
         width: 550px;
     }
@@ -237,26 +243,85 @@ input[type=number] {
     #noSecondInventoryMessage {
         width: 540px;
     }
+
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1530px) {
     .inventory {
-        width: 1000px;
+        width: 1300px;
     }
 
     #playerInventory {
-        width: 425px;
+        width: 520px;
+        margin-right: 30px;
+    }
+
+    #controls {
+        width: 200px;
+        margin-right: 30px;
+    }
+
+    #otherInventory {
+        width: 520px;
+    }
+
+    #noSecondInventoryMessage {
+        width: 540px;
+    }
+}
+
+
+@media (max-width: 1400px) {
+    .inventory {
+        width: 1100px;
+        height: 550px;
+    }
+
+    #playerInventory {
+        width: 420px;
+        margin-right: 30px;
+    }
+
+    #controls {
+        width: 200px;
+        margin-right: 30px;
+    }
+
+    #otherInventory {
+        width: 420px;
+    }
+
+    #noSecondInventoryMessage {
+        width: 450px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .inventory {
+        width: 1000px;
+        height: 520px;
+    }
+
+    #playerInventory {
+        width: 380px;
+        margin-right: 45px;
     }
 
     #controls {
         width: 150px;
+        margin-right: 45px;
+        height: 220px;
+    }
+
+    .control {
+        width: 100px;
     }
 
     #otherInventory {
-        width: 425px;
+        width: 380px;
     }
 
     #noSecondInventoryMessage {
-        width: 420px;
+        width: 400px;
     }
 }
